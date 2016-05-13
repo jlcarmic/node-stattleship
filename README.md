@@ -21,6 +21,10 @@ stattleship.players('baseball', 'mlb', params).then(function(players) {
   });
 });
 ```
+
+## Stattleship API Documentation
+The Stattleship API can be found at http://developers.stattleship.com
+
 ## Contributing
 Please open issues with feature requests and bugs.
 
