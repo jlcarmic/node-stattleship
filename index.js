@@ -87,4 +87,48 @@ module.exports = function(key) {
       throw (err);
     });
   };
+
+  this.rankings = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "rankings");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.rankings;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.rosters = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "rosters");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.rosters;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.scoring_plays = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "scoring_plays");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.scoring_plays;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.stat_leaders = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "stat_leaders");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.stat_leaders;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
 };

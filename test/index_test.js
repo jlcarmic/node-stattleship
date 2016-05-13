@@ -162,4 +162,108 @@ describe("stattleship", function() {
       });
     });
   });
+
+  describe("rankings", function(done) {
+    // verify that the rankings method exists
+    it("rankings exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.feats).to.eql('function');
+      done();
+    });
+
+    // test successful run
+    it("is successful when correct params are supplied", function(done) {
+      var sport = 'baseball';
+      var league = 'mlb';
+
+      var endpoint = util.format('/%s/%s/rankings', sport, league);
+      nock('https://www.stattleship.com')
+        .get(endpoint)
+        .reply(200, { rankings: [ { place: 42 } ] });
+
+      stattleship.rankings(sport, league, {}).then(function(rankings) {
+        expect(rankings[0].place).equals(42);
+        done();
+      }).done(null, function(error) {
+        done(error);
+      });
+    });
+  });
+
+  describe("rosters", function(done) {
+    // verify that the rosters method exists
+    it("rosters exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.feats).to.eql('function');
+      done();
+    });
+
+    // test successful run
+    it("is successful when correct params are supplied", function(done) {
+      var sport = 'baseball';
+      var league = 'mlb';
+
+      var endpoint = util.format('/%s/%s/rosters', sport, league);
+      nock('https://www.stattleship.com')
+        .get(endpoint)
+        .reply(200, { rosters: [ { team_id: 'kjh34kj23hkjh' } ] });
+
+      stattleship.rosters(sport, league, {}).then(function(rosters) {
+        expect(rosters[0].team_id).equals('kjh34kj23hkjh');
+        done();
+      }).done(null, function(error) {
+        done(error);
+      });
+    });
+  });
+
+  describe("scoring_plays", function(done) {
+    // verify that the scoring_plays method exists
+    it("scoring_plays exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.feats).to.eql('function');
+      done();
+    });
+
+    // test successful run
+    it("is successful when correct params are supplied", function(done) {
+      var sport = 'baseball';
+      var league = 'mlb';
+
+      var endpoint = util.format('/%s/%s/scoring_plays', sport, league);
+      nock('https://www.stattleship.com')
+        .get(endpoint)
+        .reply(200, { scoring_plays: [ { name: 'Touchdown' } ] });
+
+      stattleship.scoring_plays(sport, league, {}).then(function(scoring_plays) {
+        expect(scoring_plays[0].name).equals('Touchdown');
+        done();
+      }).done(null, function(error) {
+        done(error);
+      });
+    });
+  });
+
+  describe("stat_leaders", function(done) {
+    // verify that the stat_leaders method exists
+    it("stat_leaders exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.feats).to.eql('function');
+      done();
+    });
+
+    // test successful run
+    it("is successful when correct params are supplied", function(done) {
+      var sport = 'baseball';
+      var league = 'mlb';
+
+      var endpoint = util.format('/%s/%s/stat_leaders', sport, league);
+      nock('https://www.stattleship.com')
+        .get(endpoint)
+        .reply(200, { stat_leaders: [ { stat_name: 'home_runs' } ] });
+
+      stattleship.stat_leaders(sport, league, {}).then(function(stat_leaders) {
+        expect(stat_leaders[0].stat_name).equals('home_runs');
+        done();
+      }).done(null, function(error) {
+        done(error);
+      });
+    });
+  });
 });
