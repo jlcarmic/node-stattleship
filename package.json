@@ -1,0 +1,25 @@
+{
+  "name": "node-stattleship",
+  "version": "1.0.0",
+  "description": "A NodeJS wrapper for the Stattleship API (http://developers.stattleship.com/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlcarmic/node-stattleship.git"
+  },
+  "keywords": [
+    "stattleship",
+    "sports",
+    "data",
+    "api"
+  ],
+  "author": "John Carmichael <jlcarmic@gmail.com> (http://johncarmichael.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jlcarmic/node-stattleship/issues"
+  },
+  "homepage": "https://github.com/jlcarmic/node-stattleship#readme"
+}
