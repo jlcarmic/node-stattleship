@@ -131,4 +131,61 @@ module.exports = function(key) {
       throw (err);
     });
   };
+
+  // STATS GOES HERE
+
+  this.team_game_logs = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "team_game_logs");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.team_game_logs;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.team_outcome_streaks = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "team_outcome_streaks");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.team_outcome_streaks;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.teams = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "teams");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.teams;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.top_stats = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "top_stats");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.top_stats;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.total_stats = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "total_stats");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.total_player_stat;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
 };

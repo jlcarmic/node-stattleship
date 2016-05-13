@@ -266,4 +266,136 @@ describe("stattleship", function() {
       });
     });
   });
+
+  // STATS GOES HERE
+
+  describe("team_game_logs", function(done) {
+    // verify that the team_game_logs method exists
+    it("team_game_logs exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.feats).to.eql('function');
+      done();
+    });
+
+    // test successful run
+    it("is successful when correct params are supplied", function(done) {
+      var sport = 'baseball';
+      var league = 'mlb';
+
+      var endpoint = util.format('/%s/%s/team_game_logs', sport, league);
+      nock('https://www.stattleship.com')
+        .get(endpoint)
+        .reply(200, { team_game_logs: [ { home_team_outcome: 'win' } ] });
+
+      stattleship.team_game_logs(sport, league, {}).then(function(team_game_logs) {
+        expect(team_game_logs[0].home_team_outcome).equals('win');
+        done();
+      }).done(null, function(error) {
+        done(error);
+      });
+    });
+  });
+
+  describe("team_outcome_streaks", function(done) {
+    // verify that the team_outcome_streaks method exists
+    it("team_outcome_streaks exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.feats).to.eql('function');
+      done();
+    });
+
+    // test successful run
+    it("is successful when correct params are supplied", function(done) {
+      var sport = 'baseball';
+      var league = 'mlb';
+
+      var endpoint = util.format('/%s/%s/team_outcome_streaks', sport, league);
+      nock('https://www.stattleship.com')
+        .get(endpoint)
+        .reply(200, { team_outcome_streaks: [ { streak_length: 42 } ] });
+
+      stattleship.team_outcome_streaks(sport, league, {}).then(function(team_outcome_streaks) {
+        expect(team_outcome_streaks[0].streak_length).equals(42);
+        done();
+      }).done(null, function(error) {
+        done(error);
+      });
+    });
+  });
+
+  describe("teams", function(done) {
+    // verify that the teams method exists
+    it("teams exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.feats).to.eql('function');
+      done();
+    });
+
+    // test successful run
+    it("is successful when correct params are supplied", function(done) {
+      var sport = 'baseball';
+      var league = 'mlb';
+
+      var endpoint = util.format('/%s/%s/teams', sport, league);
+      nock('https://www.stattleship.com')
+        .get(endpoint)
+        .reply(200, { teams: [ { nickname: 'Avengers' } ] });
+
+      stattleship.teams(sport, league, {}).then(function(teams) {
+        expect(teams[0].nickname).equals('Avengers');
+        done();
+      }).done(null, function(error) {
+        done(error);
+      });
+    });
+  });
+
+  describe("top_stats", function(done) {
+    // verify that the top_stats method exists
+    it("top_stats exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.feats).to.eql('function');
+      done();
+    });
+
+    // test successful run
+    it("is successful when correct params are supplied", function(done) {
+      var sport = 'baseball';
+      var league = 'mlb';
+
+      var endpoint = util.format('/%s/%s/top_stats', sport, league);
+      nock('https://www.stattleship.com')
+        .get(endpoint)
+        .reply(200, { top_stats: [ { stat_name: 'hits' } ] });
+
+      stattleship.top_stats(sport, league, {}).then(function(top_stats) {
+        expect(top_stats[0].stat_name).equals('hits');
+        done();
+      }).done(null, function(error) {
+        done(error);
+      });
+    });
+  });
+
+  describe("total_stats", function(done) {
+    // verify that the total_stats method exists
+    it("total_stats exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.feats).to.eql('function');
+      done();
+    });
+  });
+
+  // test successful run
+  it("is successful when correct params are supplied", function(done) {
+    var sport = 'baseball';
+    var league = 'mlb';
+
+    var endpoint = util.format('/%s/%s/total_stats', sport, league);
+    nock('https://www.stattleship.com')
+      .get(endpoint)
+      .reply(200, { total_player_stat: [ { stat: 'passes_touchdowns' } ] });
+
+    stattleship.total_stats(sport, league, {}).then(function(total_player_stat) {
+      expect(total_player_stat[0].stat).equals('passes_touchdowns');
+      done();
+    }).done(null, function(error) {
+      done(error);
+    });
+  });
 });
