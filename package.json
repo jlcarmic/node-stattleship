@@ -21,5 +21,14 @@
   "bugs": {
     "url": "https://github.com/jlcarmic/node-stattleship/issues"
   },
-  "homepage": "https://github.com/jlcarmic/node-stattleship#readme"
+  "homepage": "https://github.com/jlcarmic/node-stattleship#readme",
+  "dependencies": {
+    "request-promise": "^3.0.0",
+    "util": "^0.10.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "nock": "^8.0.0"
+  }
 }
