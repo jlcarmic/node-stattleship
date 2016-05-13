@@ -32,4 +32,59 @@ module.exports = function(key) {
       throw (err);
     });
   };
+
+  this.game_logs = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "game_logs");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.game_logs;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.games = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "games");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.games;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.injuries = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "injuries");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.injuries;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.penalties = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "penalties");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.penalties;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
+
+  this.players = function(sport, league, params) {
+    this.options.uri = createEndPointURL(sport, league, "players");
+    this.options.qs = params;
+
+    return rp(this.options).then(function(body) {
+      return body.players;
+    }).catch(function(err) {
+      throw (err);
+    });
+  };
 };
