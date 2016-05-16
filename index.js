@@ -1,5 +1,9 @@
+var os = require('os');
 var rp = require('request-promise');
 var util = require('util');
+var version = require('./package.json').version;
+
+var platform = util.format('%s-%s%s', os.arch(), os.platform(), os.release());
 
 function createEndPointURL(sport, league, endpoint) {
   return util.format("https://www.stattleship.com/%s/%s/%s", sport, league, endpoint);
@@ -17,7 +21,8 @@ module.exports = function(key) {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': util.format('Token token=%s', this.key),
-      'Accept': 'application/vnd.stattleship.com; version=1'
+      'Accept': 'application/vnd.stattleship.com; version=1',
+      'User-Agent': util.format('Stattleship-Node/%s (%s)', version, platform)
     },
     qs: {}
   };
