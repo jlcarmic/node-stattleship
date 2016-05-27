@@ -8,13 +8,11 @@ describe("stattleship", function() {
   var stattleship = new StattleshipAPI('TEST_KEY');
 
   describe("feats", function(done) {
-    // verify that the feats method exists
     it("feats exists as a public method on stattleship", function (done) {
       expect(typeof stattleship.feats).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -34,13 +32,11 @@ describe("stattleship", function() {
   });
 
   describe("game_logs", function(done) {
-    // verify that the game_logs method exists
     it("game_logs exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.game_logs).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -60,13 +56,11 @@ describe("stattleship", function() {
   });
 
   describe("games", function(done) {
-    // verify that the game_logs method exists
     it("game exists as a public method on stattleship", function (done) {
       expect(typeof stattleship.games).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -86,13 +80,11 @@ describe("stattleship", function() {
   });
 
   describe("injuries", function(done) {
-    // verify that the injuries method exists
     it("injuries exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.injuries).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -112,13 +104,11 @@ describe("stattleship", function() {
   });
 
   describe("penalties", function(done) {
-    // verify that the penalties method exists
     it("penalties exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.penalties).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -138,13 +128,11 @@ describe("stattleship", function() {
   });
 
   describe("players", function(done) {
-    // verify that the players method exists
     it("players exists as a public method on stattleship", function (done) {
       expect(typeof stattleship.players).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -164,13 +152,11 @@ describe("stattleship", function() {
   });
 
   describe("rankings", function(done) {
-    // verify that the rankings method exists
     it("rankings exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.rankings).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -190,13 +176,11 @@ describe("stattleship", function() {
   });
 
   describe("rosters", function(done) {
-    // verify that the rosters method exists
     it("rosters exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.rosters).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -216,13 +200,11 @@ describe("stattleship", function() {
   });
 
   describe("scoring_plays", function(done) {
-    // verify that the scoring_plays method exists
     it("scoring_plays exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.scoring_plays).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -242,13 +224,11 @@ describe("stattleship", function() {
   });
 
   describe("stat_leaders", function(done) {
-    // verify that the stat_leaders method exists
     it("stat_leaders exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.stat_leaders).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -267,16 +247,36 @@ describe("stattleship", function() {
     });
   });
 
-  // STATS GOES HERE
-
-  describe("team_game_logs", function(done) {
-    // verify that the team_game_logs method exists
-    it("team_game_logs exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+  describe("stats", function(done) {
+    it("stats exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.stats).to.eql('function');
       done();
     });
 
-    // test successful run
+    it("is successful when correct params are supplied", function(done) {
+      var sport = 'baseball';
+      var league = 'mlb';
+
+      var endpoint = util.format('/%s/%s/stats', sport, league);
+      nock('https://www.stattleship.com')
+        .get(endpoint)
+        .reply(200, { stats: [ { stat: 'passes_touchdowns' } ] });
+
+      stattleship.stats(sport, league, {}).then(function(stats) {
+        expect(stats[0].stat).equals('passes_touchdowns');
+        done();
+      }).done(null, function(error) {
+        done(error);
+      });
+    });
+  });
+
+  describe("team_game_logs", function(done) {
+    it("team_game_logs exists as a public method on stattleship", function (done) {
+      expect(typeof stattleship.team_game_logs).to.eql('function');
+      done();
+    });
+
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -296,13 +296,11 @@ describe("stattleship", function() {
   });
 
   describe("team_outcome_streaks", function(done) {
-    // verify that the team_outcome_streaks method exists
     it("team_outcome_streaks exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.team_outcome_streaks).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -322,13 +320,11 @@ describe("stattleship", function() {
   });
 
   describe("teams", function(done) {
-    // verify that the teams method exists
     it("teams exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.teams).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -348,13 +344,11 @@ describe("stattleship", function() {
   });
 
   describe("top_stats", function(done) {
-    // verify that the top_stats method exists
     it("top_stats exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.top_stats).to.eql('function');
       done();
     });
 
-    // test successful run
     it("is successful when correct params are supplied", function(done) {
       var sport = 'baseball';
       var league = 'mlb';
@@ -374,28 +368,26 @@ describe("stattleship", function() {
   });
 
   describe("total_stats", function(done) {
-    // verify that the total_stats method exists
     it("total_stats exists as a public method on stattleship", function (done) {
-      expect(typeof stattleship.feats).to.eql('function');
+      expect(typeof stattleship.total_stats).to.eql('function');
       done();
     });
-  });
 
-  // test successful run
-  it("is successful when correct params are supplied", function(done) {
-    var sport = 'baseball';
-    var league = 'mlb';
+    it("is successful when correct params are supplied", function(done) {
+      var sport = 'baseball';
+      var league = 'mlb';
 
-    var endpoint = util.format('/%s/%s/total_stats', sport, league);
-    nock('https://www.stattleship.com')
-      .get(endpoint)
-      .reply(200, { total_player_stat: [ { stat: 'passes_touchdowns' } ] });
+      var endpoint = util.format('/%s/%s/total_stats', sport, league);
+      nock('https://www.stattleship.com')
+        .get(endpoint)
+        .reply(200, { total_stats: [ { stat: 'passes_touchdowns' } ] });
 
-    stattleship.total_stats(sport, league, {}).then(function(total_player_stat) {
-      expect(total_player_stat[0].stat).equals('passes_touchdowns');
-      done();
-    }).done(null, function(error) {
-      done(error);
+      stattleship.total_stats(sport, league, {}).then(function(total_stats) {
+        expect(total_stats[0].stat).equals('passes_touchdowns');
+        done();
+      }).done(null, function(error) {
+        done(error);
+      });
     });
   });
 });
