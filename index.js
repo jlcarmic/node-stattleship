@@ -5,10 +5,6 @@ var version = require('./package.json').version;
 
 var platform = util.format('%s-%s%s', os.arch(), os.platform(), os.release());
 
-function createEndPointURL(sport, league, endpoint) {
-  return util.format("https://www.stattleship.com/%s/%s/%s", sport, league, endpoint);
-}
-
 module.exports = function(key) {
   // Set the key
   this.key = key;
@@ -18,6 +14,7 @@ module.exports = function(key) {
     method: 'GET',
     uri: '',
     json: true,
+    resolveWithFullResponse: true,
     headers: {
       'Content-Type': 'application/json',
       'Authorization': util.format('Token token=%s', this.key),
@@ -27,170 +24,78 @@ module.exports = function(key) {
     qs: {}
   };
 
-  this.feats = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "feats");
+  this.callEndPoint = function(sport, league, endpoint, params) {
+    this.options.uri = util.format("https://www.stattleship.com/%s/%s/%s", sport, league, endpoint);
     this.options.qs = params;
 
-    return rp(this.options).then(function(body) {
-      return body.feats;
+    return rp(this.options).then(function(response) {
+      return response.body[endpoint];
     }).catch(function(err) {
       throw (err);
     });
+  };
+
+  this.feats = function(sport, league, params) {
+    return this.callEndPoint(sport, league, "feats", params);
   };
 
   this.game_logs = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "game_logs");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.game_logs;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "game_logs", params);
   };
 
   this.games = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "games");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.games;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "games", params);
   };
 
   this.injuries = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "injuries");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.injuries;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "injuries", params);
   };
 
   this.penalties = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "penalties");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.penalties;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "penalties", params);
   };
 
   this.players = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "players");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.players;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "players", params);
   };
 
   this.rankings = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "rankings");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.rankings;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "rankings", params);
   };
 
   this.rosters = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "rosters");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.rosters;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "rosters", params);
   };
 
   this.scoring_plays = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "scoring_plays");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.scoring_plays;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "scoring_plays", params);
   };
 
   this.stat_leaders = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "stat_leaders");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.stat_leaders;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "stat_leaders", params);
   };
 
-  // STATS GOES HERE
+  this.stats = function(sport, league, params) {
+    return this.callEndPoint(sport, league, "stats", params);
+  };
 
   this.team_game_logs = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "team_game_logs");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.team_game_logs;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "team_game_logs", params);
   };
 
   this.team_outcome_streaks = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "team_outcome_streaks");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.team_outcome_streaks;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "team_outcome_streaks", params);
   };
 
   this.teams = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "teams");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.teams;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "teams", params);
   };
 
   this.top_stats = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "top_stats");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.top_stats;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "top_stats", params);
   };
 
   this.total_stats = function(sport, league, params) {
-    this.options.uri = createEndPointURL(sport, league, "total_stats");
-    this.options.qs = params;
-
-    return rp(this.options).then(function(body) {
-      return body.total_player_stat;
-    }).catch(function(err) {
-      throw (err);
-    });
+    return this.callEndPoint(sport, league, "total_stats", params);
   };
 };
