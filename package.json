@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/jlcarmic/node-stattleship#readme",
   "dependencies": {
+    "q": "^1.4.1",
     "request-promise": "^3.0.0",
     "util": "^0.10.3"
   },

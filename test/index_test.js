@@ -17,7 +17,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/feats', sport, league);
+      var endpoint = util.format('/%s/%s/feats?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { feats: [ { level: "rare" } ] });
@@ -41,7 +41,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/game_logs', sport, league);
+      var endpoint = util.format('/%s/%s/game_logs?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { game_logs: [ { home_team_outcome: "win" } ] });
@@ -65,7 +65,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/games', sport, league);
+      var endpoint = util.format('/%s/%s/games?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { games: [ { label: "X-Men vs Avengers" } ] });
@@ -89,7 +89,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/injuries', sport, league);
+      var endpoint = util.format('/%s/%s/injuries?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { injuries: [ { location_name: "Skull" } ] });
@@ -113,7 +113,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/penalties', sport, league);
+      var endpoint = util.format('/%s/%s/penalties?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { penalties: [ { name: "Inappropriate Touching" } ] });
@@ -137,7 +137,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/players', sport, league);
+      var endpoint = util.format('/%s/%s/players?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { players: [ { name: "Tony Stark" } ] });
@@ -161,7 +161,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/rankings', sport, league);
+      var endpoint = util.format('/%s/%s/rankings?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { rankings: [ { place: 42 } ] });
@@ -185,7 +185,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/rosters', sport, league);
+      var endpoint = util.format('/%s/%s/rosters?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { rosters: [ { team_id: 'kjh34kj23hkjh' } ] });
@@ -209,7 +209,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/scoring_plays', sport, league);
+      var endpoint = util.format('/%s/%s/scoring_plays?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { scoring_plays: [ { name: 'Touchdown' } ] });
@@ -233,7 +233,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/stat_leaders', sport, league);
+      var endpoint = util.format('/%s/%s/stat_leaders?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { stat_leaders: [ { stat_name: 'home_runs' } ] });
@@ -257,7 +257,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/stats', sport, league);
+      var endpoint = util.format('/%s/%s/stats?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { stats: [ { stat: 'passes_touchdowns' } ] });
@@ -281,7 +281,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/team_game_logs', sport, league);
+      var endpoint = util.format('/%s/%s/team_game_logs?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { team_game_logs: [ { home_team_outcome: 'win' } ] });
@@ -305,7 +305,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/team_outcome_streaks', sport, league);
+      var endpoint = util.format('/%s/%s/team_outcome_streaks?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { team_outcome_streaks: [ { streak_length: 42 } ] });
@@ -329,7 +329,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/teams', sport, league);
+      var endpoint = util.format('/%s/%s/teams?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { teams: [ { nickname: 'Avengers' } ] });
@@ -353,7 +353,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/top_stats', sport, league);
+      var endpoint = util.format('/%s/%s/top_stats?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { top_stats: [ { stat_name: 'hits' } ] });
@@ -377,7 +377,7 @@ describe("stattleship", function() {
       var sport = 'baseball';
       var league = 'mlb';
 
-      var endpoint = util.format('/%s/%s/total_stats', sport, league);
+      var endpoint = util.format('/%s/%s/total_stats?page=1', sport, league);
       nock('https://www.stattleship.com')
         .get(endpoint)
         .reply(200, { total_stats: [ { stat: 'passes_touchdowns' } ] });
