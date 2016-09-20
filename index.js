@@ -23,7 +23,7 @@ var platform = util.format('%s-%s%s', os.arch(), os.platform(), os.release());
 // Private Functions
 function callEndPoint(sport, league, endpoint, params, paginate, data, total) {
   var deferred = Q.defer();
-  options.uri = util.format("https://www.stattleship.com/%s/%s/%s", sport, league, endpoint);
+  options.uri = util.format("https://api.stattleship.com/%s/%s/%s", sport, league, endpoint);
   options.qs = params;
   options.qs.page = options.qs.page || 1;
   console.log(options.qs.page);
