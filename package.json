@@ -1,6 +1,6 @@
 {
   "name": "node-stattleship",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A NodeJS wrapper for the Stattleship API (http://developers.stattleship.com/)",
   "main": "index.js",
   "scripts": {
