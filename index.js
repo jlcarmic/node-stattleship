@@ -40,6 +40,9 @@ function callEndPoint(sport, league, endpoint, params, paginate, data, total) {
     } else {
       deferred.resolve(data);
     }
+  })
+  .catch(function(r) {
+      deferred.reject(e)
   });
 
   return deferred.promise;
