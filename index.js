@@ -26,13 +26,10 @@ function callEndPoint(sport, league, endpoint, params, paginate, data, total) {
   options.uri = util.format("https://api.stattleship.com/%s/%s/%s", sport, league, endpoint);
   options.qs = params;
   options.qs.page = options.qs.page || 1;
-  console.log(options.qs.page);
 
   rp(options).then(function(response) {
     total = response.headers.total;
-    console.log(total);
     data = data.concat(response.body[endpoint]);
-    console.log(Object.keys(data).length);
     options.qs.page++;
 
     // Page is 0 if use did not specify specific page, if they did no need to recurse
