@@ -120,6 +120,17 @@ Stattleship.prototype.players = function(sport, league, params) {
   });
 };
 
+Stattleship.prototype.player_season_stats = function(sport, league, params) {
+  var data = [];
+  var total = 0;
+  var paginate = (params.page === undefined);
+
+  return callEndPoint(sport, league, "player_season_stats", params, paginate, data, total)
+    .then(function(data) {
+      return data;
+  });
+};
+
 Stattleship.prototype.rankings = function(sport, league, params) {
   var data = [];
   var total = 0;
